@@ -2,12 +2,13 @@ import java.util.*;
 
 public class Address_Book {
     static Scanner scan = new Scanner(System.in);
-    //User details
+    //USER DETAILS
     public String firstName, lastName, address, city, state, email;
     public Integer zip;
     public Long phoneNum;
+
     //CONTACT DETAILS FROM USERS
-    public void addContact() {
+    public Person addContact() {
         System.out.println("Enter First name: ");
         firstName = scan.next();
 
@@ -32,11 +33,11 @@ public class Address_Book {
         System.out.println("Enter Email: ");
         email = scan.next();
 
-        System.out.println("First Name= " + firstName + "\nLast Name= " + lastName + "\nAddress= " + address + "\nCity= " + city + "\nState= " + state + "\nZip Code= " + zip + "\nPhone Number= " + phoneNum + "\nEmail ID= " + email);
+        return new Person(firstName, lastName, address, city, state, zip, phoneNum, email);
     }
     
     //TO EDIT CONTACT
-    public void editcontact() {
+    public Person editcontact(Person person) {
         System.out.println("Enter your choice: ");
         System.out.println("1. To edit Address ");
         System.out.println("2. To edit City ");
@@ -75,8 +76,12 @@ public class Address_Book {
             default:
                 System.out.println("Invalid choice,try again.");
         }
+        return person;
+    }
 
-        System.out.println("First Name= " + firstName + "\nLast Name= " + lastName + "\nAddress= " + address + "\nCity= " + city + "\nState= " + state + "\nZip Code= " + zip + "\nPhone Number= " + phoneNum + "\nEmail ID= " + email);
+    //DELETING CONTACT DETAILS
+    public Person deleteContact(Person person) {
+        return null;
     }
 
     public static void main(String[] args) {
@@ -84,13 +89,43 @@ public class Address_Book {
         //WELCOME MESSAGE
         System.out.println("Welcome to Address Book Program");
         Address_Book add = new Address_Book();
-
+        Person person = null;
         System.out.println("Enter Number of entries: ");
         Integer numOfEnteries = scan.nextInt();
         for (int i = 0; i < numOfEnteries; i++) {
             add.addContact();
-            System.out.println("To Edit contacts: ");
-            add.editcontact();
+        }
+        System.out.println("Enter your choice: ");
+        System.out.println("1. Edit person ");
+        System.out.println("2. Delete person ");
+
+        //OPTIONS TO EDIT PERSON DETAILS AND TO DELETE THE PERSON
+        int choice = scan.nextInt();
+        switch (choice)
+        {
+            case 1:
+                System.out.println("Enter first name: ");
+                String firstName = scan.next();
+                if(person.getFirstName().equals(firstName )){
+                    add.editcontact(person);
+                }
+                else {
+                    System.out.println("person not exist");
+                }
+                break;
+            case 2:
+                System.out.println("Enter name: ");
+                String fName = scan.next();
+                if(person.getFirstName().equals(fName )){
+                    person = null;
+                }
+                else {
+                    System.out.println("person not exist");
+                }
+                break;
+
+            default:
+                System.out.println("Invalid choice,try again.");
         }
     }
 }
