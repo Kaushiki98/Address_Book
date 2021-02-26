@@ -1,11 +1,9 @@
 import java.util.*;
 
 public class Address_Book {
-
+    static Scanner scan = new Scanner(System.in);
     //CONTACT DETAILS FROM USERS
     public void addContact() {
-        Scanner scan = new Scanner(System.in);
-
         System.out.println("Enter First name: ");
         String firstName = scan.next();
 
@@ -22,10 +20,10 @@ public class Address_Book {
         String state = scan.next();
 
         System.out.println("Enter Zip code: ");
-        String zip = scan.next();
+        Integer zip = scan.nextInt();
 
         System.out.println("Enter Phone number: ");
-        String phoneNum = scan.next();
+        Long phoneNum = scan.nextLong();
 
         System.out.println("Enter Email: ");
         String email = scan.next();
@@ -38,8 +36,10 @@ public class Address_Book {
         //WELCOME MESSAGE
         System.out.println("Welcome to Address Book Program");
         Address_Book add = new Address_Book();
-        add.addContact();
-
-    }git 
+        System.out.println("Enter Number of entries: ");
+        Integer numOfEnteries = scan.nextInt();
+        for (int i = 0; i < numOfEnteries; i++) {
+            add.addContact();
+        }
+    }
 }
-
